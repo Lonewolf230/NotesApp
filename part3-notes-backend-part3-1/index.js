@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+
 const cors=require('cors')
 
 function requestLogger(request,response,next){
@@ -9,6 +10,7 @@ function requestLogger(request,response,next){
   next()
 }
 app.use(cors())
+app.use(express.static('dist'))
 let notes = [
   {
     id: 1,
