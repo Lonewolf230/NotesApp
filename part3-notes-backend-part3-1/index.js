@@ -2,6 +2,12 @@ const express = require('express')
 const app = express()
 const cors=require('cors')
 
+function requestLogger(request,response,next){
+  console.log(request.method);
+  console.log(request.path)
+  console.log(request.body)
+  next()
+}
 app.use(cors())
 let notes = [
   {
@@ -75,6 +81,8 @@ app.delete('/api/notes/:id', (request, response) => {
 
   response.status(204).end()
 })
+
+app.use(requestLogger)
 
 const PORT = process.env.PORT||3001
 app.listen(PORT, () => {
